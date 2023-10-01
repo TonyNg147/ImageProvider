@@ -42,7 +42,7 @@ class ImagePoolPrivate{
             totalImagesSize = sb.st_size - sizeof(header);
             int offset = sizeof(header);
             qWarning()<<"total image size "<<totalImagesSize<<" fd "<<fd<<" "<<offset;
-            dataPtr = (uchar*)mmap(nullptr, totalImagesSize, PROT_READ, MAP_SHARED , fd, offset);
+            dataPtr = (uchar*)mmap(nullptr, totalImagesSize, PROT_READ, MAP_SHARED , fd, 8192);
             if (dataPtr == MAP_FAILED){
                 close(fd);
                 std::string error = std::string("Mapping failed with error ") + strerror(errno);
