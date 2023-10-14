@@ -42,6 +42,7 @@ class ImagePoolPrivate{
             totalImagesSize = sb.st_size - sizeof(header);
             int offset = sizeof(header);
             qWarning()<<"total image size "<<totalImagesSize<<" fd "<<fd<<" "<<offset;
+            // At this line the offset is 8K because The page aligns by 4k or 8k
             dataPtr = (uchar*)mmap(nullptr, totalImagesSize, PROT_READ, MAP_SHARED , fd, 8192);
             if (dataPtr == MAP_FAILED){
                 close(fd);
